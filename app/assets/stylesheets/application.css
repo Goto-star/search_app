@@ -1,15 +1,93 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import url(sanitize.css);
+
+body {
+  background-color: #F4F5F7;
+  font-size: 15px;
+  line-height: 2;
+}
+
+li a {
+  color: #00509f;
+  text-decoration: none;
+}
+
+li a:visited {
+  color: #788d98;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
+
+header {
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.container {
+  padding: 0 120px;
+}
+
+.logo {
+  float: left;
+  color: #00509f;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+  margin-top: 15px;
+}
+
+.global-nav {
+  float: right;
+  margin-top: 25px;
+}
+
+.global-nav li {
+  float: left;
+  margin: 0 35px;
+  font-size: 20px;
+  font-family: serif;
+}
+
+.global-nav li a:hover {
+  border-bottom: 2px solid #788d98;
+  padding-bottom: 3px;
+  text-decoration: none;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  color: #ffffff;
+  padding: 20px 0;
+  background-color: #444444;
+  width: 100%;
+}
+
+footer small {
+  font-size: 12px;
+}
+
+.content h1 {
+  font-size: 100px;
+  line-height: 1.3;
+  color: #1d59be;
+  margin-bottom: 50px;
+}
+
+.content p {
+  font-size: 16px;
+  color: #1d59be;
+}
+
+.static_pages {
+  background-image: url(https://img.freepik.com/premium-photo/blurred-interior-of-hospital-or-clinical-with-people-abstract-medical-background_1484-1310.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
