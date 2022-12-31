@@ -81,7 +81,7 @@ footer small {
 
 .content p {
   font-size: 16px;
-  color: #1d59be;
+  color: #fff;
 }
 
 .static_pages {
@@ -90,4 +90,28 @@ footer small {
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
+}
+
+.about-content {
+  background-color: white;
+  border-radius: 10px;
+  height: 500px;
+  margin-top: 60px;
+  padding: 30px 40px;
+}
+
+.about-content section h2 {
+  font-size: 40px;
+  padding-left: 30px;
+  border-left: #1d59be solid 4px;
+}
+
+.about-content section p {
+  font-size: 1.2em;
+  line-height: 1.8;
+}
+
+#map {
+  height: 600px;
+  width: 600px;
 }
