@@ -1,0 +1,34 @@
+<% provide(:title, 'Login') %>
+
+<div class="devise-container">
+  <div class="devise-frame">
+    <div class="devise-inner">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= render "users/shared/error_messages", resource: resource %>
+            <h2>ログイン</h2>
+
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "current-password" %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me, 'remember login' %>
+              </div>
+            <% end %>
+
+            <div class="actions">
+              <%= f.submit "ログイン" %>
+            </div>
+        <% end %>
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>

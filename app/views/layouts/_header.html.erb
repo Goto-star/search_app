@@ -4,6 +4,8 @@
     <nav>
       <ul class='global-nav'>
         <% if user_signed_in? %>
+          <li><%= link_to 'profile',  users_show_path, class: 'global-ul'%><li>
+          <li><%= link_to 'Setting', edit_user_registration_path, class: 'global-ul' %></li>
           <li><%= link_to 'logout', destroy_user_session_path, class: 'global-ul', method: :delete %>
         <% else %>
           <li><%= link_to 'about', about_path, class: 'global-ul' %></li>
