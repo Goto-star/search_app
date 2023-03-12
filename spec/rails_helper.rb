@@ -21,7 +21,7 @@ require 'devise'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -32,11 +32,24 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  include ApplicationHelper
   # Test the functionality of devise with Rspec
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
+
+  config.before(:each) do
+
+    # let(:rspec_session) で指定された値を セッションの初期値とします
+    session = defined?(rspec_session) ? rspec_session : {}
+
+    # destroyメソッドを実行してもエラーにならないようにします（必要であれば）
+    session.class_eval { def destroy; nil; end }
+
+    # sessionメソッドを上書き
+    allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(session)
+  end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

@@ -1,0 +1,43 @@
+<% provide(:title, 'Post') %>
+
+<div class="post-create-container">
+  <div class="post-create-inner">
+    <%= form_with model: @post, local: true do |f| %>
+      <%= render "shared/error_message", object: f.object %>
+      <h2>口コミ作成</h2>
+      <div class="post-group">
+        <%= f.label :title, "タイトル:", class: "post-title" %><br />
+        <%= f.text_field :title, class: "form title-form" %>
+      </div>
+
+      <div class="post-group">
+        <%= f.label :place, "病院名:", class: "place-form" %><br />
+        <%= f.text_field :place, class: "form place-from" %>
+      </div>
+
+      <div class="post-group">
+        <%= f.label :rate, "評価:", class: "post-rate" %>
+        <div id="star">
+          <%= f.hidden_field :rate, id: :review_star %>
+        </div>
+      </div>
+
+      <%= render "shared/star_rate" %>
+
+      <div class="post-group">
+        <%= f.label :impression, "感想:", class: "post-impression" %><br />
+        <%= f.text_area :impression, class: "form impression-form",
+                        placeholder: "どんな病院でしたか??" %>
+      </div>
+
+      <div class="post-group">
+        <%= f.label :place_image, "病院画像:", class: "form post-place_image" %><br />
+        <%= f.file_field :place_image, class: "place_image-form", placeholder: "画像をアップロード" %>
+      </div>
+
+      <div class="post-group">
+        <%= f.submit "投稿する", class: "btn btn-create" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -2,11 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Users_Logout', type: :request do
   describe '#Logout' do
-    let (:user) { create(:user) }
-
     context 'ログイン状態の場合' do
       before do
-        sign_in user
+        user = create(:user)
+        post user_registration_path, params: { user: user }
       end
 
       it 'ログアウトした時、トップページにリダイレクトされる' do

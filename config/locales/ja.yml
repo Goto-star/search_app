@@ -1,5 +1,17 @@
 ja:
   activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        title: タイトル
+        place: 病院名
+        impression: 感想
+    model:
+      user: ユーザー
+    attributes:
+      user:
+       name: 名前
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -204,3 +216,10 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."

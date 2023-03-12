@@ -1,18 +1,23 @@
 <header>
   <div class='container'>
-    <%= link_to "Where's Hosp", root_path, class: 'logo' %>
-    <nav>
-      <ul class='global-nav'>
-        <% if user_signed_in? %>
-          <li><%= link_to 'profile',  users_show_path, class: 'global-ul'%><li>
-          <li><%= link_to 'Setting', edit_user_registration_path, class: 'global-ul' %></li>
+    <% if user_signed_in? %>
+      <%= link_to "Where's Hosp", posts_path, class: 'logo' %>
+      <nav>
+        <ul class='global-nav'>
+          <li><%= link_to 'profile',  user_path(current_user), class: 'global-ul'%><li>
+          <li><%= link_to 'setting', edit_user_registration_path, class: 'global-ul' %></li>
           <li><%= link_to 'logout', destroy_user_session_path, class: 'global-ul', method: :delete %>
-        <% else %>
+        </ul>
+      </nav>
+    <% else %>
+     <%= link_to "Where's Hosp", root_path, class: 'logo' %>
+     <nav>
+        <ul class='global-nav'>
           <li><%= link_to 'about', about_path, class: 'global-ul' %></li>
           <li><%= link_to 'login', new_user_session_path, class: 'global-ul' %></li>
           <li><%= link_to 'sign up', new_user_registration_path, class: 'global-ul' %></li>
-        <% end %>
-      </ul>
-    </nav>
+        </ul>
+     </nav>
+    <% end %>
   </div>
 </header>

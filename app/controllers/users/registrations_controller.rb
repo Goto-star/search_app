@@ -46,8 +46,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     edit_user_registration_path
   end
 
-  def after_sign_in_path_for(_resource)
-    edit_user_registration_path
+  def after_update_path_for(_resource)
+    posts_path
   end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

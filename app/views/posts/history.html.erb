@@ -1,0 +1,49 @@
+<div class="post-history-area">
+  <h2>口コミ履歴</h2>
+
+  <%= paginate @posts %>
+
+  <ol class="posts">
+    <% @posts.each do |post| %>
+      <li class="clearfix">
+        <%= link_to user_path(post.user) do %>
+          <% if post.user.image? %>
+            <%= image_tag post.user.image.url, class: "post-index-icon" %>
+          <% else %>
+            <img class="post-index-icon" src="/assets/default-icon.jpeg">
+          <% end %>
+        <% end %>
+        <span class="place"><%= link_to post.place, "/posts/#{post.id}", class: "place" %></span>
+        <span class="title"><%= post.title %></span>
+        <div id="star-rate-<%= post.id %>">
+          <script>
+            $('#star-rate-<%= post.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= post.rate %>,
+            });
+          </script>
+        </div>
+
+        <span class="post-timestamp">
+          <%= time_ago_in_words(post.created_at) %> 前
+        </span>
+
+        <% if post.user == current_user %>
+          <div class="btn-area">
+            <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "口コミ削除しますか?"}, class: "btn btn-index-destroy" %>
+            <%= link_to "編集", edit_post_path(post), class: "btn btn-index-edit" %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+
+  <%= paginate @posts %>
+
+  <%= link_to "一覧に戻る", posts_path %>
+</div>

@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'StaticPages', type: :request do
-  let(:base_title) { "Where's Hosp" }
-
   describe 'root' do
     it '正常にレスポンスを返すこと' do
       get root_path
@@ -18,7 +16,7 @@ RSpec.describe 'StaticPages', type: :request do
 
     it 'タイトルが動的に表示される' do
       get '/'
-      expect(response.body).to include "Top | #{base_title}"
+      expect(response.body).to include full_title('Top')
     end
   end
 
@@ -30,7 +28,7 @@ RSpec.describe 'StaticPages', type: :request do
 
     it 'タイトルが動的に表示される' do
       get '/about'
-      expect(response.body).to include "About | #{base_title}"
+      expect(response.body).to include full_title('About')
     end
   end
 
@@ -42,7 +40,7 @@ RSpec.describe 'StaticPages', type: :request do
 
     it 'タイトルが動的に表示される' do
       get '/users/sign_up'
-      expect(response.body).to include "Signup | #{base_title}"
+      expect(response.body).to include full_title('Signup')
     end
   end
 
@@ -54,7 +52,7 @@ RSpec.describe 'StaticPages', type: :request do
 
     it 'タイトルが動的に表示される' do
       get '/users/sign_in'
-      expect(response.body).to include "Login | #{base_title}"
+      expect(response.body).to include full_title('Login')
     end
   end
 end
