@@ -1,0 +1,72 @@
+<% provide(:title, 'Post') %>
+
+<section class="google-map-container">
+  <h2>HospMap</h2>
+  <input id="address" type="search" class="form-search" value="杏林大学病院">
+  <input type="submit" value="検索" class="btn-search" onclick="codeAddress()">
+  <div id="map"></div>
+</section>
+
+<section class="post-container clearfix">
+  <div class="user-info">
+    <div class="profile">
+      <%= render "shared/user_info" %>
+      <%= link_to "口コミ作成", new_post_path, class: "btn btn-new" %>
+      <%= link_to "口コミ一覧", history_posts_path, class: "btn btn-history" %>
+    </div>
+  </div>
+
+  <div class="post-index-area">
+    <h2>口コミ一覧</h2>
+    <%= search_form_for @q, url: search_posts_path do |f| %>
+      <%= f.search_field :place_cont, class: "form-search", placeholder: "検索ワード" %>
+      <%= f.submit "検索", class: "btn-search" %>
+    <% end %>
+
+    <%= paginate @posts, class: 'paginate' %>
+
+    <ol class="posts">
+      <% @posts.each do |post| %>
+        <li class="clearfix">
+          <%= link_to user_path(post.user) do %>
+            <% if post.user.image? %>
+              <%= image_tag post.user.image.url, class: "post-index-icon" %>
+            <% else %>
+              <img class="post-index-icon" src="/assets/default-icon.jpeg">
+            <% end %>
+          <% end %>
+          <span class="place"><%= link_to post.place, "/posts/#{post.id}", class: "place" %></span>
+          <span class="title"><%= post.title %></span>
+          <div id="star-rate-<%= post.id %>">
+            <script>
+              $('#star-rate-<%= post.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= post.rate %>,
+              });
+            </script>
+          </div>
+
+          <span class="post-timestamp">
+            <%= time_ago_in_words(post.created_at) %> 前
+          </span>
+
+          <% if post.user == current_user %>
+            <div class="btn-area">
+              <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "口コミ削除しますか?"}, class: "btn btn-index-destroy" %>
+              <%= link_to "編集", edit_post_path(post), class: "btn btn-index-edit" %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+
+    <%= paginate @posts, class: 'pagination' %>
+  </div>
+</section>
+
+<%= render "shared/google_map" %>

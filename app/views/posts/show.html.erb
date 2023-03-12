@@ -1,0 +1,61 @@
+<% provide(:title, 'Post') %>
+
+<section class="post-show-container">
+  <h2>口コミ詳細</h2>
+
+  <div class="post-show-area">
+    <div class="post-show-info">
+      <% if @post.user.image? %>
+        <%= image_tag @post.user.image.url, class: "post-show-icon" %>
+      <% else %>
+        <img class="post-show-icon" src="/assets/default-icon.jpeg">
+      <% end %>
+
+      <p><%= @post.user.name %></p>
+    </div>
+
+    <div class="post-show-content">
+      <label class="post-impression" for="impression">病院:</label>
+      <%= @post.place %>
+    </div>
+
+    <div class="post-show-content clearfix">
+      <label class="post-rate" for="rate">評価:</label>
+      <div class="post-show-rate" id="star-rate-<%= @post.id %>">
+        <script>
+          $('#star-rate-<%= @post.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @post.rate %>,
+          });
+        </script>
+      </div>
+    </div>
+
+    <div class="post-show-content">
+      <label class="post-impression" for="impression">感想:</label>
+      <%= @post.impression %>
+    </div>
+
+    <% if @post.place_image? %>
+      <div class="post-show-content">
+        <label class="post-place-iamge" for="place-image">画像:</label>
+        <%= image_tag @post.place_image.url, class: "place-image" %>
+      </div>
+    <% end %>
+
+    <div class="post-show-content">
+      <label class="post-created_at" for="created_at">作成日時:</label>
+      <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+
+    <div class="post-show-content">
+      <label class="post-updated_at" for="updated_at">更新日時:</label>
+      <%= @post.updated_at.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+  </div>
+</section>

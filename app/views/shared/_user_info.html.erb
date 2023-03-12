@@ -1,0 +1,12 @@
+<div class="profile-area">
+  <% if @user.image? %>
+    <%= image_tag @user.image.url, class: "user-info-icon" %>
+  <% else %>
+    <img class="user-info-icon" src="/assets/default-icon.jpeg">
+  <% end %>
+
+  <div class="profile-name">
+    <label class="update-name" for="name"></label>
+    <%= @user.name %>
+  </div>
+</div>

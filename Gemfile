@@ -33,9 +33,28 @@ gem 'dotenv-rails'
 
 gem 'devise'
 
+gem 'devise-i18n'
+
+gem 'devise-i18n-views'
+
+gem 'mini_magick'
+
+gem 'image_processing', '~> 1.2'
+
+gem 'carrierwave'
+
+gem 'rails-i18n'
+
+gem 'jquery-rails'
+
+gem 'kaminari'
+
+gem 'ransack'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker'
 end
 
 group :development do

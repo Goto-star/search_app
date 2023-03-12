@@ -1,0 +1,65 @@
+<% provide(:title, 'Profile') %>
+
+<div class="user-show-container clearfix">
+  <aside class="show-content-area">
+    <h2>プロフィール</h2>
+
+    <div class="user-show-content">
+      <% if @user.image? %>
+        <%= image_tag @user.image.url, class: "show-host-icon" %>
+      <% else %>
+        <img class="show-host-icon" src="/assets/default-icon.jpeg">
+      <% end %>
+    </div>
+
+    <div class="user-show-content">
+      <label class="show-name" for="name">ユーザー名:</label>
+      <%= @user.name %>
+    </div>
+
+    <% if @user == current_user %>
+      <div class="user-show-content">
+        <label class="show-email" for="email">メールアドレス:</label>
+        <%= @user.email %>
+      </div>
+    <% end %>
+
+    <div class="user-show-content">
+      <label class="show-introduction">自己紹介:</label>
+      <%= @user.introduction %>
+    </div>
+
+    <% if @user == current_user %>
+      <div class="user-show-content">
+        <%= link_to "編集する", edit_user_registration_path, class: "btn btn-edit" %>
+      </div>
+    <% end %>
+  </aside>
+
+  <% if @user.posts.any? %>
+    <div class="post-history">
+      <h2>口コミ履歴 (<%= @user.posts.count %>)</h2>
+
+      <%= paginate @posts %>
+
+      <ol class="posts">
+        <% @posts.each do |post| %>
+          <li id="post-<%= post.id %>">
+            <% if post.place_image? %>
+              <span class="image"><%= image_tag post.place_image.url, class: "post-info-icon" %></span>
+            <% else %>
+              <span class="image"><img class="post-info-icon" src="/assets/default-place-icon.png"></span>
+            <% end %>
+            <span class="place"><%= post.place %></span>
+            <span class="title">評価:<%= post.rate %>点 | <%= post.title %></span>
+            <span class="timestamp">
+              <%= time_ago_in_words(post.created_at) %> 前
+            </span>
+          </li>
+        <% end %>
+      </ol>
+
+       <%= paginate @posts %>
+    </div>
+  <% end %>
+</div>
