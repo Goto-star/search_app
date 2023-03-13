@@ -1,21 +1,47 @@
 <script>
-  let map
+  var map;
+  var infowindow;
+  var geocoder;
 
   function initMap(){
-    geocoder = new google.maps.Geocoder()
+    //位置情報を取得する
+    navigator.geolocation.getCurrentPosition(
+      function(position){
+        geocoder = new google.maps.Geocoder()
+        // 現在地の緯度経度取得
+        var nowlatitude = position.coords.latitude;
+        var nowlongitude = position.coords.longitude;
+        var nowlatlng = new google.maps.LatLng(nowlatitude, nowlongitude);
+        // 現在地の緯度経度をマップの中心に生成
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: nowlatlng,
+          zoom: 15
+        });
+        //現在地の緯度経度を中心にマップに円を描く
+        var circleOptions = {
+          map: map,
+          center: new google.maps.LatLng(nowlatitude, nowlongitude),
+          radius: 1000,
+          strokeColor: '#1d59be',
+          strokeOpacity: '1',
+          strokeWeight: '1',
+          fillColor: '#D9E5FF',
+          fillOpacity: 0.35
+        };
+        circle = new google.maps.Circle(circleOptions);
 
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 35.6809591, lng: 139.7673068},
-      zoom: 15,
-    });
-
-    marker = new google.maps.Marker({
-      position:  {lat: 35.6809591, lng: 139.7673068},
-      map: map
+        //現在地から1キロ以内の病院を検索
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: nowlatlng,
+          radius: 1000,
+          type: ['hospital']
+        }, callback);
+      }, function(error) {
+        alert('エラー:' + error);
     });
   }
-
-  let geocoder
 
   function codeAddress(){
     let inputAddress = document.getElementById('address').value;
@@ -24,13 +50,56 @@
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
+          map: map,
+          position: results[0].geometry.location
         });
-      } else {
-        alert('該当する結果がありませんでした：' + status);
+        //現在地の緯度経度を中心にマップに円を描く
+        var circleOptions = {
+          map: map,
+          center: results[0].geometry.location,
+          radius: 1000,
+          strokeColor: '#1d59be',
+          strokeOpacity: '1',
+          strokeWeight: '1',
+          fillColor: '#D9E5FF',
+          fillOpacity: 0.35
+        };
+        circle = new google.maps.Circle(circleOptions);
+
+        //現在地から1キロ以内の病院を検索
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: results[0].geometry.location,
+          radius: 1000,
+          type: ['hospital']
+        }, callback);
+        } else {
+          alert('該当する結果がありませんでした：' + status);
+        }
+    });
+  }
+
+  //地図上にマーカーをプロット
+  function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        createMarker(results[i])
       }
+    }
+  }
+  //地図上のマーカーをクリックした際の動作
+  function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location
+    });
+    //吹き出しの中身
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + '評価: ' + place.rating + '<div>');
+      infowindow.open(map, this);
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap&libraries=places" async defer></script>
