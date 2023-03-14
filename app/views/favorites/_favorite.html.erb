@@ -1,0 +1,11 @@
+<div id="favorite-link-<%= post.id %>">
+  <% if current_user.favorites.find_by(post_id: post.id) %>
+    <%= link_to post_favorites_path(post.id), method: :delete, remote: true do %>
+        <div class = "good_button">❤️<%= post.favorites.count %></div>
+    <% end %>
+  <% else %>
+    <%= link_to post_favorites_path(post.id), method: :post, remote: true do %>
+        <div class = "ungood_button">♡️<%= post.favorites.count %></div>
+    <% end %>
+  <% end %>
+</div>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :posts do
+    resource :favorites, only: %i[create destroy]
     collection do
       get 'search'
       get 'history'
