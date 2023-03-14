@@ -571,3 +571,12 @@ footer small {
 .pagination>li>a:hover {
   border-radius: 15px;
 }
+
+/* いいねマーク */
+.ungood_button {
+  color: #668ad8;
+}
+
+.good_button {
+  color: #ff82b2;
+}
