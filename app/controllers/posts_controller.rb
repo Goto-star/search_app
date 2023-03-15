@@ -5,11 +5,13 @@ class PostsController < ApplicationController
 
   def index
     @user = current_user
+    @guest_user = User.guest
     @posts = Post.all.page(params[:page]).per(7)
   end
 
   def show
     @post = Post.find(params[:id])
+    @guest_user = User.guest
   end
 
   def new

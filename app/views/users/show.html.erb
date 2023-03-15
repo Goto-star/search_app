@@ -29,7 +29,7 @@
       <%= @user.introduction %>
     </div>
 
-    <% if @user == current_user %>
+    <% if @user == current_user && @guest_user != current_user %>
       <div class="user-show-content">
         <%= link_to "編集する", edit_user_registration_path, class: "btn btn-edit" %>
       </div>

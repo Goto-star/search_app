@@ -9,38 +9,52 @@ RSpec.describe 'Posts', type: :system do
     before do
       FactoryBot.send(:user_with_posts, posts_count: 40)
       @user = Post.first.user
+      @guest_user = User.guest
     end
 
-    it '30件表示されていること' do
-      visit user_path @user
+    context 'ログイン状態の場合' do
+      before do
+        visit user_path @user
+      end
 
-      posts_wrapper =
-        within 'ol.posts' do
-          find_all('li')
+      it '30件表示されていること' do
+        posts_wrapper =
+          within 'ol.posts' do
+            find_all('li')
+          end
+        expect(posts_wrapper.size).to eq 7
+      end
+
+      it 'ページネーションのラッパータグが表示されていること' do
+        expect(page).to have_selector '.pagination'
+      end
+
+      it 'ページネーションの表示が1箇所のみであること' do
+        pagination = find_all('.pagination')
+        expect(pagination.size).to eq 2
+      end
+
+      it '投稿のタイトルがページ内に表示されていること' do
+        @user.posts.each do |post|
+          expect(page).to have_content post.title
         end
-      expect(posts_wrapper.size).to eq 7
+      end
     end
 
-    it 'ページネーションのラッパータグが表示されていること' do
-      visit user_path @user
-      expect(page).to have_selector '.pagination'
-    end
+    context 'ゲストログイン状態の場合' do
+      before do
+        visit root_path
+        click_on 'guestlogin'
+      end
 
-    it 'ページネーションの表示が1箇所のみであること' do
-      visit user_path @user
-      pagination = find_all('.pagination')
-      expect(pagination.size).to eq 2
-    end
-
-    it '投稿のタイトルがページ内に表示されていること' do
-      visit user_path @user
-      @user.posts.each do |post|
-        expect(page).to have_content post.title
+      it 'user_infoの口コミ作成・口コミ一覧ボタンがないこと' do
+        expect(page).to_not have_link '口コミ作成'
+        expect(page).to_not have_link '口コミ一覧'
       end
     end
   end
 
-  describe 'home' do
+  describe 'Post#new' do
     before do
       FactoryBot.send(:user_with_posts, posts_count: 35)
       @user = Post.first.user
