@@ -5,7 +5,7 @@
     <% end %>
   <% else %>
     <%= link_to post_favorites_path(post.id), method: :post, remote: true do %>
-        <div class = "ungood_button">♡️<%= post.favorites.count %></div>
+        <div class = "bad_button">♡️<%= post.favorites.count %></div>
     <% end %>
   <% end %>
 </div>

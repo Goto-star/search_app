@@ -14,6 +14,7 @@
      <nav>
         <ul class='global-nav'>
           <li><%= link_to 'about', about_path, class: 'global-ul' %></li>
+          <li><%= link_to 'guestlogin', users_guest_sign_in_path, method: :post, class: 'global-ul', data: { confirm: "ゲストログインしますか?" } %>
           <li><%= link_to 'login', new_user_session_path, class: 'global-ul' %></li>
           <li><%= link_to 'sign up', new_user_registration_path, class: 'global-ul' %></li>
         </ul>

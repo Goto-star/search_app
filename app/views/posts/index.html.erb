@@ -11,8 +11,10 @@
   <div class="user-info">
     <div class="profile">
       <%= render "shared/user_info" %>
-      <%= link_to "口コミ作成", new_post_path, class: "btn btn-new" %>
-      <%= link_to "口コミ一覧", history_posts_path, class: "btn btn-history" %>
+      <% unless current_user == @guest_user %>
+        <%= link_to "口コミ作成", new_post_path, class: "btn btn-new" %>
+        <%= link_to "口コミ一覧", history_posts_path, class: "btn btn-history" %>
+      <% end %>
     </div>
   </div>
 
