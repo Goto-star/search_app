@@ -54,14 +54,21 @@
           </div>
 
           <span class="post-timestamp">
-            <%= time_ago_in_words(post.created_at) %> 前
+            <%= time_ago_in_words(post.created_at) %> 前の投稿です
           </span>
 
           <%= render 'favorites/favorite', post: post %>
 
+          <div class='comments-icon-area'>
+            <%= link_to post_path(post) do %>
+              <img class="post-comment-icon" src="/assets/comment.svg">
+              <span style="color: rgb(56, 169, 208);"><%= post.comments.count %></span>
+            <% end %>
+          </div>
+
           <% if post.user == current_user %>
             <div class="btn-area">
-              <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "口コミ削除しますか?"}, class: "btn btn-index-destroy" %>
+              <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "口コミ削除しますか?" }, class: "btn btn-index-destroy" %>
               <%= link_to "編集", edit_post_path(post), class: "btn btn-index-edit" %>
             </div>
           <% end %>

@@ -1,0 +1,7 @@
+<h2>コメントフォーム</h2>
+
+<%= form_with model: [post, comment], local: true do |f| %>
+  <%= render 'shared/error_message', object: f.object %>
+  <%= f.text_area :comment, placeholder: "コメントをしましょう!!", size: '40' %>
+  <%= f.submit '送信', class: "btn btn-create" %>
+<% end %>

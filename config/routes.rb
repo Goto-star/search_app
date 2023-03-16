@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/destroy'
   root to: 'static_pages#top'
   get 'about', to: 'static_pages#about'
 
@@ -13,7 +15,8 @@ Rails.application.routes.draw do
   resources :users
 
   resources :posts do
-    resource :favorites, only: %i[create destroy]
+    resource :favorites, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
     collection do
       get 'search'
       get 'history'
