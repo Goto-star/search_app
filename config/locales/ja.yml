@@ -1,17 +1,14 @@
 ja:
   activerecord:
-    models:
-      post: 投稿
     attributes:
+      user:
+        name: 名前
       post:
         title: タイトル
         place: 病院名
         impression: 感想
-    model:
-      user: ユーザー
-    attributes:
-      user:
-       name: 名前
+      comment:
+        comment: コメント
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

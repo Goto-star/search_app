@@ -12,6 +12,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @guest_user = User.guest
+    @comment = Comment.new
+    @comments = @post.comments.page(params[:page]).per(7)
   end
 
   def new

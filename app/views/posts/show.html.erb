@@ -59,3 +59,15 @@
     </div>
   </div>
 </section>
+
+<section class="comment-container">
+  <div class="comment-area clearfix">
+    <div class="comment-form-area">
+      <%= render "shared/comment_form", { post: @post, comment: @comment } %>
+    </div>
+
+    <div class="comment-index-area">
+      <%= render "shared/comment", { comments: @comments } %>
+    </div>
+  </div>
+</section>

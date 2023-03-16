@@ -1,0 +1,20 @@
+<h2>コメント一覧 <%= @post.comments.count %>件</h2>
+
+<%= paginate @comments, class: 'paginate' %>
+
+<div class='comment-content-area'>
+  <% comments.each do |comment| %>
+    <div class='comment-content'>
+      <% if comment.user.image? %>
+        <%= image_tag comment.user.image.url, class: "comment-user-icon", size: "50x50" %>
+      <% else %>
+        <img class="comment-user-icon" src="/assets/default-icon.jpeg">
+      <% end %>
+      <%= comment.user.name %>
+      <% if comment.user == current_user %>
+        <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete, data: { confirm: "口コミ削除しますか?" }, class: "btn btn-comment-destroy" %>
+      <% end %>
+      <p><%= comment.comment %></p>
+    </div>
+  <% end %>
+<div>
