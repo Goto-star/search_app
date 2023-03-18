@@ -64,6 +64,8 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-git-copy'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
