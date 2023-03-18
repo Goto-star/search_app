@@ -85,6 +85,7 @@ group :test do
   gem 'selenium-webdriver'
   gem "factory_bot_rails"
   gem 'faker'
+  gem 'rspec_junit_formatter'
 end
 
 group :production do
