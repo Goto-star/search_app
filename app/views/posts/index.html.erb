@@ -61,7 +61,7 @@
 
           <div class='comments-icon-area'>
             <%= link_to post_path(post) do %>
-              <img class="post-comment-icon" src="/assets/comment.svg">
+              <%= image_tag "comment.svg", class: "post-comment-icon" %>
               <span style="color: rgb(56, 169, 208);"><%= post.comments.count %></span>
             <% end %>
           </div>

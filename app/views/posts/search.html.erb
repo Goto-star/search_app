@@ -6,7 +6,7 @@
         <% if post.user.image? %>
           <%= image_tag post.user.image.url, class: "post-index-icon" %>
         <% else %>
-          <img class="post-index-icon" src="/assets/default-icon.jpeg">
+          <%= image_tag asset_path("default-icon.jpeg") %>
         <% end %>
         <span class="place"><%= link_to post.place, "/posts/#{post.id}", class: "place" %></span>
         <span class="title"><%= post.title %></span>

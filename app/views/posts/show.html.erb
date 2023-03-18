@@ -2,13 +2,13 @@
 
 <section class="post-show-container">
   <h2>口コミ詳細</h2>
-
+  <%= paginate @comments, class: 'pagination' %>
   <div class="post-show-area">
     <div class="post-show-info">
       <% if @post.user.image? %>
         <%= image_tag @post.user.image.url, class: "post-show-icon" %>
       <% else %>
-        <img class="post-show-icon" src="/assets/default-icon.jpeg">
+        <%= image_tag asset_path("default-icon.jpeg"), class: "post-show-icon" %>
       <% end %>
 
       <p><%= @post.user.name %></p>
