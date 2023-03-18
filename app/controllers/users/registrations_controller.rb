@@ -6,9 +6,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  def ensure_general_user
-    resource.email == 'guest@example.com' if redirect_to posts_path, alert: 'ゲストユーザーの変更・削除はできません'
-  end
   # GET /resource/sign_up
   # def new
   #   super
@@ -53,6 +50,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(_resource)
     posts_path
   end
+
+  def ensure_general_user
+    guest_user = User.guest
+    if current_user == guest_user then redirect_to posts_path, alert: 'ゲストユーザーの変更・削除はできません' end
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])

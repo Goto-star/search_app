@@ -26,7 +26,7 @@ class Users::PasswordsController < Devise::PasswordsController
   protected
 
   def ensure_general_user
-    params[:user][:email].casecmp('guest@example.com').zero? if redirect_to new_user_session_path, alert: 'ゲストユーザーのパスワード再設定はできません'
+    if params[:user][:email].casecmp('guest@example.com').zero? then redirect_to new_user_session_path, alert: 'ゲストユーザーのパスワード再設定はできません' end
   end
 
   # def after_resetting_password_path_for(resource)
