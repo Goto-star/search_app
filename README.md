@@ -1,7 +1,8 @@
-# README
+# Where's Hosp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+病院検索に特化したアプリケーションです。
+半径1km内の医療施設を探索でき、評価情報も記載されています。
+また口コミ機能も搭載しているため、実際に病院に訪れた人の感想をリアルタイムで見ることができます。
 
 Things you may want to cover:
 
