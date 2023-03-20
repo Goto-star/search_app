@@ -1,7 +1,7 @@
 # Where's Hosp
 
 病院検索に特化したアプリケーションです。<br>
-半径1km内の医療施設を探索でき、評価情報も記載されています。<br>
+半径1km内の医療施設を探索でき、評価情報も記載されています。デフォルトは自分の現在地です。<br>
 また口コミ機能も搭載しているため、実際に病院に訪れた人の感想をリアルタイムで見ることができます。<br>
 ![Uploading image.png…](https://user-images.githubusercontent.com/100769306/226295254-ef4b18e5-22b7-4552-ae11-6a77d7321888.png)
 ![Uploading image.png…](https://user-images.githubusercontent.com/100769306/226304310-19e8464f-4457-4bac-a474-491ecf9e9cbf.png)
