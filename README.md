@@ -38,6 +38,10 @@ https://wherehosp.com
 
 ![Uploading image.png…](https://user-images.githubusercontent.com/100769306/226305966-f7a39ea6-da29-4bac-8189-a81a5a49d58a.png)
 
+## データベース構造
+
+![Uploading image.png…](https://user-images.githubusercontent.com/100769306/226314970-96ad0557-06fb-4f52-87f4-f63a259e7be0.png)
+
 ## 機能一覧
 
 - ユーザー登録、ログイン機能(devise)
