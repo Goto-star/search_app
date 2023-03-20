@@ -15,12 +15,12 @@
 - Nginx
 - Unicorns 
 - AWS1
-    - VPC1_1
-    - EC21_1
-    - RDS1_1
-    - Route531_1
-    - ACM1_1
-    - ALB1_1
+    - VPC
+    - EC2
+    - RDS
+    - Route53
+    - ACM
+    - ALB
 - Capistrano3
 - Rspec
 - Rubocop
