@@ -4,22 +4,24 @@
 半径1km内の医療施設を探索でき、評価情報も記載されています。
 また口コミ機能も搭載しているため、実際に病院に訪れた人の感想をリアルタイムで見ることができます。
 
-Things you may want to cover:
+## 使用技術
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- HTML&CSS
+- Bootstrap
+- Ruby 2.7.3
+- Ruby on Rails 6.0.0
+- JavaScript
+- MySQL 6.3
+- Nginx
+- Unicorns 
+- AWS1
+    VPC1_1
+    EC21_1
+    RDS1_1
+    Route531_1
+    ACM1_1
+    ALB1_1
+- Capistrano3
+- Rspec
+- Rubocop
+- Google map Api
