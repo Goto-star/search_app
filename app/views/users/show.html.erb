@@ -8,7 +8,7 @@
       <% if @user.image? %>
         <%= image_tag @user.image.url, class: "show-host-icon" %>
       <% else %>
-        <img class="show-host-icon" src="/assets/default-icon.jpeg">
+        <%= image_tag asset_path("default-icon.jpeg"), class: "show-host-icon" %>
       <% end %>
     </div>
 
@@ -48,7 +48,7 @@
             <% if post.place_image? %>
               <span class="image"><%= image_tag post.place_image.url, class: "post-info-icon" %></span>
             <% else %>
-              <span class="image"><img class="post-info-icon" src="/assets/default-place-icon.png"></span>
+              <span class="image"><%= image_tag asset_path("default-place-icon.png"), class: "post-info-icon" %></span>
             <% end %>
             <span class="place"><%= post.place %></span>
             <span class="title">評価:<%= post.rate %>点 | <%= post.title %></span>
